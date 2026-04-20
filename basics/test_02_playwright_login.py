@@ -30,3 +30,11 @@ def test_empty_credentials(page: Page):
     page.click("#login-button")
     error = page.locator(".error-message-container")
     assert error.is_visible()
+
+def test_wrong_url_on_login(page: Page):
+    """This test was intentionally failed — To view a screenshot"""
+    page.goto("https://www.saucedemo.com")
+    page.fill("#user-name", "standard_user")
+    page.fill("#password", "secret_sauce")
+    page.click("#login-button")
+    assert page.url == "https://www.saucedemo.com/YANLIS_SAYFA.html"
